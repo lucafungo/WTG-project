@@ -2,6 +2,11 @@ import csv
 from textblob import TextBlob
 import os
 from api_caller import yesterday
+import boto3
+from keys import ACCESS_KEY, SECRET_ACCESS_KEY, BUCKET_NAME
+
+# Create a connection to the S3 service
+s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_ACCESS_KEY)
 
 # Define origin folder, the files to analyse will be found here
 folder = f'{yesterday}'
@@ -33,6 +38,11 @@ with open(output_file, 'w', newline='') as csvfile:
                 # as most likely the are result of an error in the analisys
                 if analysis != 0:
                     analysis_list.append(analysis)
+
+# Upload the file to the S3 bucket
+s3.upload_file(output_file, BUCKET_NAME, output_file)
+
+
                 
                 
 # Define the average of all the analisys done and return it in the last row of the destination file
