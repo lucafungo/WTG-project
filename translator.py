@@ -19,10 +19,9 @@ for filename in os.listdir(src_dir):
 
         # Translate the text using TextBlob
         blob = TextBlob(text)
-        translated_sentences = blob.translate(to='it').sentences
-        translated_text = ' '.join(str(sentence) for sentence in translated_sentences)
+        translated_text = str(blob.translate(to='ita')) # Translate to Italian
 
         # Save the translated text to a new file in the destination directory
         dst_filename = filename[:-4] + '_translated.txt'
-        with open(os.path.join(dst_dir, dst_filename), 'w', encoding='utf-8', errors='ignore') as f:
+        with open(os.path.join(dst_dir, dst_filename), 'w', encoding='utf-8') as f:
             f.write(translated_text)
