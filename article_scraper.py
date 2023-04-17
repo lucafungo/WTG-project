@@ -5,6 +5,8 @@ import csv
 import os
 from api_caller import yesterday
 import zipfile
+import boto3
+from keys import ACCESS_KEY, SECRET_ACCESS_KEY, BUCKET_NAME
 
 # Create a directory with the current date to store the articles
 if not os.path.exists(f'{yesterday}'):
@@ -55,3 +57,9 @@ with zipfile.ZipFile(zip_file_name, mode='w') as zip_file:
             file_path = os.path.join(f'{yesterday}', file_name)
             # Add the file to the zip file
             zip_file.write(file_path)
+
+# Create a connection to the S3 service
+s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_ACCESS_KEY)
+
+# Upload the file to the S3 bucket
+s3.upload_file(zip_file_name, BUCKET_NAME, zip_file_name)
