@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import csv
 import os
 from api_caller import yesterday
+import zipfile
 
 # Create a directory with the current date to store the articles
 if not os.path.exists(f'{yesterday}'):
@@ -43,3 +44,14 @@ with open(f'{yesterday}.csv', newline='') as csvfile:
             with open(f'{yesterday}/{title}.txt', 'w') as f:
                 f.write(full_article)
                 print(f'Article {article_count} saved as {title}.txt')
+
+# Define the name of the zipfile
+zip_file_name = f'{yesterday}.zip'
+
+# Create a new zip file and add the .txt files to it
+with zipfile.ZipFile(zip_file_name, mode='w') as zip_file:
+    for file_name in os.listdir(f'{yesterday}'):
+        if file_name.endswith('.txt'):
+            file_path = os.path.join(f'{yesterday}', file_name)
+            # Add the file to the zip file
+            zip_file.write(file_path)
