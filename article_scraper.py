@@ -1,3 +1,5 @@
+## TODO: clean the result to have a clean text
+
 # Import required libraries
 import requests
 from bs4 import BeautifulSoup
