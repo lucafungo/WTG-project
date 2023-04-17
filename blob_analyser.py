@@ -43,39 +43,3 @@ with open(output_file, 'w', newline='') as csvfile:
 s3.upload_file(output_file, BUCKET_NAME, output_file)
 
 
-                
-                
-# Define the average of all the analisys done and return it in the last row of the destination file
-# with open(output_file, 'a', newline='') as csvfile:
-#     writer = csv.writer(csvfile)
-#     writer.writerow(['Average', sum(analysis_list) / len(analysis_list)])
-    
-
-
-            
-
-
-
-# LEAVING THE REST OF THE CODE COMMENT OUT AS THE SENTIMENT ANALISYS DONE ON THE 
-# WHOLE ARTICLE (like above) AND THE ONE DONE SENTENCE BY SENTENCE 
-# (like below) GIVE DIFFERENT OUTCOME, STILL CHECKING ON THE 
-# TextBlob documentation WHICH ONE IS MORE ACCURATE
-
-
-
-# def analysis(blob):
-#     polarity_list = []
-#     subjectivity_list = []
-#     for sentence in blob.sentences:
-#         sentence_analysis = sentence.sentiment
-#         if sentence_analysis.polarity != 0:
-#             polarity_list.append(sentence_analysis.polarity)
-#         if sentence_analysis.subjectivity != 0.0:
-#             subjectivity_list.append(sentence_analysis.subjectivity)
-#     avg_polarity = sum(polarity_list) / len(polarity_list) if polarity_list else 0
-#     avg_subjectivity = sum(subjectivity_list) / len(subjectivity_list) if subjectivity_list else 0
-#     return (f'Polarity avg in this article is:{avg_polarity}. Subjectivity avg is:{avg_subjectivity}')
-
-# print(analysis(blob))
-
-
