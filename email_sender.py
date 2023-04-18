@@ -17,6 +17,7 @@ body = f"Hi there,\n\nPlease see file attached with the analisys of the articles
 # Define the attachment files
 csv_attachment_file = f'{yesterday}sentiment_analysis.csv'
 zip_attachment_file = f'{yesterday}.zip'
+zip_attachment_file_ita = f'{yesterday}_italian.zip'
 
 # Create a multipart message object and add sender, recipient, subject, and body
 message = MIMEMultipart()
@@ -33,6 +34,10 @@ with open(csv_attachment_file, 'rb') as f:
 with open(zip_attachment_file, 'rb') as f:
     attachment = MIMEApplication(f.read(), _subtype=os.path.splitext(zip_attachment_file)[1][1:])
     attachment.add_header('Content-Disposition', 'attachment', filename=os.path.basename(zip_attachment_file))
+    message.attach(attachment)
+with open(zip_attachment_file_ita, 'rb') as f:
+    attachment = MIMEApplication(f.read(), _subtype=os.path.splitext(zip_attachment_file_ita)[1][1:])
+    attachment.add_header('Content-Disposition', 'attachment', filename=os.path.basename(zip_attachment_file_ita))
     message.attach(attachment)
 
 
