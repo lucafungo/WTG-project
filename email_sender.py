@@ -8,7 +8,7 @@ from api_caller import yesterday
 
 # Define sender and recipient email addresses
 sender_email = 'dev.lucafungo@gmail.com'
-recipient_email = 'alfieriluca91@gmail.com'
+recipient_email = 'luca.alfieri@xandertalent.com'
 
 # Define message subject and body
 subject = f'Political analisys from The Guardian, {yesterday}'
@@ -26,7 +26,7 @@ message['To'] = recipient_email
 message['Subject'] = subject
 message.attach(MIMEText(body))
 
-# Open the attachment file and add it to the message object
+# Open the attachment files and add it to the message object
 with open(csv_attachment_file, 'rb') as f:
     attachment = MIMEApplication(f.read(), _subtype=os.path.splitext(csv_attachment_file)[1][1:])
     attachment.add_header('Content-Disposition', 'attachment', filename=os.path.basename(csv_attachment_file))
@@ -46,4 +46,4 @@ with open(zip_attachment_file_ita, 'rb') as f:
 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
     smtp.login(sender_email, f'{mailpass}')
     smtp.send_message(message)
-    print('Email sent!')
+    print(f'Email sent to {recipient_email}')
