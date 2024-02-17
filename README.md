@@ -48,5 +48,5 @@ to discuss what you would like to change.
 
 ## Contact
 
-If you have any questions or comments, please feel free to contact me at luca.alfieri@xandertalent.com.
+If you have any questions or comments, please feel free to contact me at alfieriluca91@gmail.com.
 
